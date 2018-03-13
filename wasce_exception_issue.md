@@ -7,9 +7,9 @@
 （2）继承调用Args的类SSLConnectionSocketFactory并重写部分方法， 从而跳过Args的使用。【依旧找不到Agrs， 因为后来发现代码的其他地方也调用了Args，也需要重写，但是对方是个final class， 不能被继承】
    后来去wasce的官网文档 https://publib.boudle.ibm.com/wasce/V3.0.0/en/war.html （需要翻墙），找到了可以override the parent class 的方法，runtime中就会使用webApp中的class。
   具体方法： 在geronimo-web.xml 中添加如下:
-<environment>  
+`<environment>  
     <hidden-classes>
          <filter>org.apache.http</filter>
     </hidden-classes>
-</environment>
-另外， 还有其他标签可以使用以达到各种不同的效果如<no-overridable-classes>（load from parent loader），<inverse-classloading>.（load from app before parent loader， 谨慎用，因为所有jar都会从app 中load，最好用hidden class实现）。
+</environment>`
+另外， 还有其他标签可以使用以达到各种不同的效果如`<no-overridable-classes>`（load from parent loader），`<inverse-classloading>`.（load from app before parent loader， 谨慎用，因为所有jar都会从app 中load，最好用hidden class实现）。
