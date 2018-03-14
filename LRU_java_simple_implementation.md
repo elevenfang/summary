@@ -1,6 +1,6 @@
 # LRU实现 #
 
-利用LinkedHashMap特有的按访问顺序排序的简单实现了LRU缓存
+利用LinkedHashMap按访问有序的特点简单实现了LRU缓存
 ```
 import java.util.LinkedHashMap;
 
